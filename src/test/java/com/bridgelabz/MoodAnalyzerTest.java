@@ -2,38 +2,48 @@ package com.bridgelabz;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 public class MoodAnalyzerTest {
     @Test
-    public void givenMessage_WhenSad_Should_Return_Sad()
-    {
-        RealMoodAnalyzer moodAnalyzer =new RealMoodAnalyzer();
+    public void givenMessage_WhenSad_Should_Return_Sad() {
+        RealMoodAnalyzer moodAnalyzer = new RealMoodAnalyzer(null);
         try {
-            Assert.assertEquals("SAD",moodAnalyzer.checkMood("THIS IS SAD MESSAGE"));
+            Assert.assertEquals("SAD", moodAnalyzer.checkMood("THIS IS SAD MESSAGE"));
         } catch (InvalidMoodException e) {
             e.printStackTrace();
         }
 
     }
+
     @Test
-    public void givenMessage_WhenHappy_Should_Return_Happy()
-    {
-        RealMoodAnalyzer moodAnalyzer =new RealMoodAnalyzer();
+    public void givenMessage_WhenHappy_Should_Return_Happy() {
+        RealMoodAnalyzer moodAnalyzer = new RealMoodAnalyzer(null);
         try {
-            Assert.assertEquals("HAPPY",moodAnalyzer.checkMood("THIS IS HAPPY MESSAGE"));
+            Assert.assertEquals("HAPPY", moodAnalyzer.checkMood("THIS IS HAPPY MESSAGE"));
         } catch (InvalidMoodException e) {
             e.printStackTrace();
         }
 
     }
+
     @Test
     public void givenMessage_WhenNull_Should_Return_Happy() {
-        RealMoodAnalyzer moodAnalyzer =new RealMoodAnalyzer();
+        RealMoodAnalyzer moodAnalyzer = new RealMoodAnalyzer(null);
         try {
-            ExpectedException exceptionRule= ExpectedException.none();
-            exceptionRule.expect(InvalidMoodException.class);
-            Assert.assertEquals("HAPPY",moodAnalyzer.checkMood(null));
+            moodAnalyzer.checkMood(null);
+        } catch (InvalidMoodException e) {
+            e.printStackTrace();
+            Assert.assertEquals("Please enter proper mood", e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void givenMessage_WhenProper_Should_Return_Object() {
+        RealMoodAnalyzer moodAnalyzer = MoodAnalyzerFactory.createMoodAnalyzer("I am in Happy Mood");
+        try {
+            String mood = moodAnalyzer.checkMood();
+//            Assert.assertEquals("HAPPY", mood);
         } catch (InvalidMoodException e) {
             e.printStackTrace();
         }
