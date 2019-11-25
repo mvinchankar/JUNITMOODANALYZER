@@ -11,7 +11,7 @@ public class MoodAnalyzerFactory {
             Class<?> moodAnalyzerClass = Class.forName("com.bridgelabz.RealMoodAnalyzer");
             Constructor<?> moodConstructor = moodAnalyzerClass.getConstructor(String.class);
             try {
-                Object obj=moodConstructor.newInstance(message);
+                Object obj = moodConstructor.newInstance(message);
                 return (RealMoodAnalyzer) obj;
             } catch (InstantiationException e) {
                 e.printStackTrace();

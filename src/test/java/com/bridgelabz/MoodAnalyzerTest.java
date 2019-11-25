@@ -49,4 +49,11 @@ public class MoodAnalyzerTest {
         }
 
     }
+
+    @Test
+    public void givenMessage_WhenProper_Should_Return_Object_Using_Reflector() {
+        RealMoodAnalyzer moodAnalyzer = new RealMoodAnalyzer();
+        ObjectReflector.dump(moodAnalyzer, 0);
+
+    }
 }
